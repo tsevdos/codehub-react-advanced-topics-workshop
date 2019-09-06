@@ -4,3 +4,7 @@ body {
   padding: 1.5em;
   background: #ecf0f3;
 }
+
+.m-b {
+  margin: 0 0 1rem;
+}

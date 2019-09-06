@@ -12,11 +12,7 @@ export default function HookUseState() {
       <div>
         <h4>Hello, {name}!</h4>
         <div>
-          <input
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
       </div>
     </div>

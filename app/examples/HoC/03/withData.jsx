@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 
-const withData = ({ url, format, dataPath }) => (WrappedComponent) => {
+const withData = ({ url, format, resource }) => (WrappedComponent) => {
   class withDataComponent extends Component {
     state = {
-      data: []
-    }
+      data: [],
+    };
 
     componentDidMount() {
-      fetch(`${url}?format=${format}`)
+      fetch(`${url}/${resource}?format=${format}`)
         .then((res) => res.json())
-        .then((res) => this.setState({ data: res[dataPath] }));
+        .then((characters) => this.setState({ data: characters }));
     }
 
     render() {

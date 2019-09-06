@@ -1,14 +1,14 @@
 import React from "react";
-import useStarWarsCharacters from "./useStarWarsCharacters";
+import useCharacters from "./useCharacters";
 import Loader from "./Loader";
 
 export default function CustomHook() {
   const settings = {
-    url: "https://swapi.co/api/people/",
+    url: "http://localhost:3001",
     format: "json",
-    dataPath: "results"
+    resource: "characters",
   };
-  const { data, isLoading } = useStarWarsCharacters(settings);
+  const { data, isLoading } = useCharacters(settings);
 
   return (
     <div>
@@ -20,10 +20,14 @@ export default function CustomHook() {
         {isLoading ? (
           <Loader />
         ) : (
-          data.map(({ name, gender }) => (
-            <div key={name}>
-              <h3 className="is-size-5">{name}</h3>
-              <p>gender: {gender}</p>
+          data.map(({ id, name, culture, isFemale }) => (
+            <div className="card m-b" key={id}>
+              <div className="card-header">{name}</div>
+              <div className="card-body">
+                <p className="card-text">
+                  {culture} / {isFemale ? "female" : "male"}
+                </p>
+              </div>
             </div>
           ))
         )}

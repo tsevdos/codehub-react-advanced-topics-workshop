@@ -3,30 +3,30 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, NavLink } from "react-router-dom";
 // CPC
 import {
-  UserList,
-  UserListContainer,
-  UserListContainer3,
-  TodoApp,
-  TodoAppContainer,
+  CharactersList,
+  CharactersListContainer,
+  CharactersListContainer2,
+  CPCCardExercise,
+  // CardContainer,
 } from "./examples/CPC/index";
 // HoC
 import {
-  HoCStarWarsCharacters1,
-  HoCStarWarsCharacters2,
-  HoCStarWarsCharacters3,
-  HoCStarWarsCharacters4,
-  HoCExerciseCard,
-  HoCCardSolution,
+  HoCCharacters1,
+  HoCCharacters2,
+  HoCCharacters3,
+  HoCCharacters4,
+  HoCCardExercise,
+  // HoCCardSolution,
 } from "./examples/HoC/index";
 // Render props
 import {
-  StarWarsCharactersRP,
-  StarWarsCharactersRP1,
-  StarWarsCharactersRP2,
-  StarWarsCharactersRP3,
-  StarWarsCharactersRP4,
+  RPCharacters,
+  RPCharacters1,
+  RPCharacters2,
+  RPCharacters3,
+  RPCharacters4,
   RPExerciseCard,
-  RPCardSolution,
+  // RPCardSolution,
 } from "./examples/RP/index";
 // Hooks
 import {
@@ -36,7 +36,7 @@ import {
   HookUseReducer,
   CustomHook,
   HookExerciseCard,
-  HookCardSolution,
+  // HookCardSolution,
 } from "./examples/Hooks/index";
 // CSS
 import "./app.css";
@@ -141,26 +141,26 @@ ReactDOM.render(
         <div className="col-9">
           <h1>React Advanced Topics</h1>
           {/* Presentational and Container components */}
-          <Route exact path="/CPC/01" component={UserList} />
-          <Route exact path="/CPC/02" component={UserListContainer} />
-          <Route exact path="/CPC/03" component={UserListContainer3} />
-          <Route exact path="/CPC/exercise" component={TodoApp} />
-          <Route exact path="/CPC/solution" component={TodoAppContainer} />
+          <Route exact path="/CPC/01" component={CharactersList} />
+          <Route exact path="/CPC/02" component={CharactersListContainer} />
+          <Route exact path="/CPC/03" component={CharactersListContainer2} />
+          <Route exact path="/CPC/exercise" component={() => <CPCCardExercise title="My card" />} />
+          {/* <Route exact path="/CPC/solution" component={() => <CardContainer title="My card" />} /> */}
           {/* Higher-order components (HOC) */}
-          <Route exact path="/HoC/01" component={HoCStarWarsCharacters1} />
-          <Route exact path="/HoC/02" component={HoCStarWarsCharacters2} />
-          <Route exact path="/HoC/03" component={HoCStarWarsCharacters3} />
-          <Route exact path="/HoC/04" component={HoCStarWarsCharacters4} />
-          <Route exact path="/HoC/exercise" component={() => <HoCExerciseCard title="My card" />} />
-          <Route exact path="/HoC/solution" component={() => <HoCCardSolution title="My card" />} />
+          <Route exact path="/HoC/01" component={HoCCharacters1} />
+          <Route exact path="/HoC/02" component={HoCCharacters2} />
+          <Route exact path="/HoC/03" component={HoCCharacters3} />
+          <Route exact path="/HoC/04" component={HoCCharacters4} />
+          <Route exact path="/HoC/exercise" component={() => <HoCCardExercise title="My card" />} />
+          {/* <Route exact path="/HoC/solution" component={() => <HoCCardSolution title="My card" />} /> */}
           {/* Render props */}
-          <Route exact path="/RP/01" component={StarWarsCharactersRP} />
-          <Route exact path="/RP/02" component={StarWarsCharactersRP1} />
-          <Route exact path="/RP/03" component={StarWarsCharactersRP2} />
-          <Route exact path="/RP/04" component={StarWarsCharactersRP3} />
-          <Route exact path="/RP/05" component={StarWarsCharactersRP4} />
+          <Route exact path="/RP/01" component={RPCharacters} />
+          <Route exact path="/RP/02" component={RPCharacters1} />
+          <Route exact path="/RP/03" component={RPCharacters2} />
+          <Route exact path="/RP/04" component={RPCharacters3} />
+          <Route exact path="/RP/05" component={RPCharacters4} />
           <Route exact path="/RP/exercise" component={() => <RPExerciseCard title="My card" />} />
-          <Route exact path="/RP/solution" component={() => <RPCardSolution title="My card" />} />
+          {/* <Route exact path="/RP/solution" component={() => <RPCardSolution title="My card" />} /> */}
           {/* Hooks */}
           <Route exact path="/hooks/01" component={HookUseState} />
           <Route exact path="/hooks/02" component={HookUseEffect} />
@@ -172,11 +172,11 @@ ReactDOM.render(
             path="/hooks/exercise"
             component={() => <HookExerciseCard title="My card" />}
           />
-          <Route
+          {/* <Route
             exact
             path="/hooks/solution"
             component={() => <HookCardSolution title="My card" />}
-          />
+          /> */}
         </div>
       </div>
     </div>

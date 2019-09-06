@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 export default function HookUseEffect() {
-  const [starWarsCharacters, setStarWarsCharacters] = useState([]);
+  const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    fetch("https://swapi.co/api/people/?format=json")
-      .then(res => res.json())
-      .then(res => {
-        setStarWarsCharacters(res.results);
+    fetch("http://localhost:3001/characters")
+      .then((res) => res.json())
+      .then((characters) => {
+        setCharacters(characters);
         setIsLoading(false);
       });
   }, []);
@@ -18,18 +18,22 @@ export default function HookUseEffect() {
         Hooks 02:<small className="text-muted"> useEffect()</small>
       </h2>
       <br />
-      <ul>
+      <div>
         {isLoading ? (
           <div>Loading...</div>
         ) : (
-          starWarsCharacters.map(({ name, gender }) => (
-            <div key={name}>
-              <h3 className="is-size-5">{name}</h3>
-              <p>gender: {gender}</p>
+          characters.map(({ id, name, culture, isFemale }) => (
+            <div className="card m-b" key={id}>
+              <div className="card-header">{name}</div>
+              <div className="card-body">
+                <p className="card-text">
+                  {culture} / {isFemale ? "female" : "male"}
+                </p>
+              </div>
             </div>
           ))
         )}
-      </ul>
+      </div>
     </div>
   );
 }

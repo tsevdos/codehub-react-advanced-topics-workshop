@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 class Card extends Component {
   state = {
-    user: null
+    user: null,
   };
 
   componentDidMount() {
-    fetch("https://api.myjson.com/bins/nkbdu")
-      .then(res => res.json())
-      .then(user => {
+    fetch("http://localhost:3001/user")
+      .then((res) => res.json())
+      .then((user) => {
         this.setState({ user });
       });
   }
@@ -20,29 +19,16 @@ class Card extends Component {
 
     return (
       <div>
-        <h2 className="is-size-2">{title}</h2>
+        <h2>{title}</h2>
         {user && (
           <div className="card">
-            <div className="card-content">
-              <div className="media">
-                <div className="media-left">
-                  <figure className="image is-96x96">
-                    <img
-                      className="is-rounded"
-                      src="https://bulma.io/images/placeholders/96x96.png"
-                      alt="Placeholder image"
-                    />
-                  </figure>
-                </div>
-                <div className="media-content">
-                  <p className="title is-4">{user.name}</p>
-                  <p className="subtitle is-6">{user.username}</p>
-                </div>
-              </div>
-              <div className="content">
-                <p>is admin: {user.admin ? "yes" : "no"}</p>
-                <p>JWT: {user.JWT}</p>
-              </div>
+            <img src={user.imgPath} className="card-img-top" alt={`${user.name} photo.`} />
+            <div className="card-body">
+              <h5 className="card-title">{user.name}</h5>
+              <h6 className="card-subtitle mb-2 text-muted">JWT: {user.JWT}</h6>
+              <p className="card-text">
+                {user.username} | is admin: {user.admin ? "yes" : "no"}
+              </p>
             </div>
           </div>
         )}
@@ -50,9 +36,5 @@ class Card extends Component {
     );
   }
 }
-
-Card.propTypes = {
-  title: PropTypes.string.isRequired
-};
 
 export default Card;

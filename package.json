@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "api": "json-server db.json --port 3001",
     "start": "webpack-dev-server --config ./webpack.config.js --mode development --hot --inline --port 3000",
     "build": "webpack --mode production",
     "lint": "eslint --ext .jsx --ext .js app",
@@ -13,7 +14,6 @@
   "license": "ISC",
   "dependencies": {
     "json-server": "0.15.1",
-    "prop-types": "15.7.2",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-router-dom": "5.0.1"

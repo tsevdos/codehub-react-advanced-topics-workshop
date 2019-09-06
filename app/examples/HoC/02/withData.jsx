@@ -3,13 +3,13 @@ import React, { Component } from "react";
 const withData = (WrappedComponent) => {
   class withDataComponent extends Component {
     state = {
-      data: []
-    }
+      data: [],
+    };
 
     componentDidMount() {
-      fetch("https://swapi.co/api/people/?format=json")
+      fetch("http://localhost:3001/characters")
         .then((res) => res.json())
-        .then((res) => this.setState({ data: res.results }));
+        .then((characters) => this.setState({ data: characters }));
     }
 
     render() {

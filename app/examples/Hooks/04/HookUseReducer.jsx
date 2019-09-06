@@ -3,13 +3,13 @@ import Loader from "./Loader";
 
 const initialState = {
   data: [],
-  isLoading: true
+  isLoading: true,
 };
 
 const reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-  case "ADD_STARWARS_CHARACTERS":
+  case "ADD_CHARACTERS":
     return { ...state, isLoading: false, data: payload };
   default:
     return state;
@@ -19,10 +19,10 @@ const reducer = (state, action) => {
 export default function HookUseReducer() {
   const [{ data, isLoading }, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
-    fetch("https://swapi.co/api/people/?format=json")
-      .then(res => res.json())
-      .then(res => {
-        dispatch({ type: "ADD_STARWARS_CHARACTERS", payload: res.results });
+    fetch("http://localhost:3001/characters")
+      .then((res) => res.json())
+      .then((characters) => {
+        dispatch({ type: "ADD_CHARACTERS", payload: characters });
       });
   }, []);
 
@@ -36,14 +36,16 @@ export default function HookUseReducer() {
         {isLoading ? (
           <Loader />
         ) : (
-          data.map(({ name, gender }) => {
-            return (
-              <div key={name}>
-                <h3 className="is-size-5">{name}</h3>
-                <p>gender: {gender}</p>
+          data.map(({ id, name, culture, isFemale }) => (
+            <div className="card m-b" key={id}>
+              <div className="card-header">{name}</div>
+              <div className="card-body">
+                <p className="card-text">
+                  {culture} / {isFemale ? "female" : "male"}
+                </p>
               </div>
-            );
-          })
+            </div>
+          ))
         )}
       </ul>
     </div>
